@@ -10,8 +10,12 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "h3": "^1.13.0",
     "nuxt": "^3.13.2",
-    "vue": "latest",
-    "vue-router": "latest"
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.18.1",
+    "@types/node": "^22.8.0"
   }
 }
