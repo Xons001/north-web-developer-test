@@ -82,3 +82,9 @@ cd north-web-developer-test.git
 
 # Install dependencies
 npm install
+```
+---
+
+## Additional Notes
+This application was built with responsiveness and ease of use in mind, leveraging Tailwind CSS for styling and Vue 3/Nuxt 3 for reactive data handling. All components and composables are modular and designed for scalability, making it easy to add more features in the future.
+
