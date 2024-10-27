@@ -81,7 +81,10 @@ git clone https://github.com/Xons001/north-web-developer-test.git
 cd north-web-developer-test.git
 
 # Install dependencies
-npm install
+pnpm install
+
+# Run application
+pnpm run dev
 ```
 ---
 
