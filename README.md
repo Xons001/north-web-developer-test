@@ -81,4 +81,13 @@ git clone https://github.com/Xons001/north-web-developer-test.git
 cd north-web-developer-test.git
 
 # Install dependencies
-npm install
+pnpm install
+
+# Run application
+pnpm run dev
+```
+---
+
+## Additional Notes
+This application was built with responsiveness and ease of use in mind, leveraging Tailwind CSS for styling and Vue 3/Nuxt 3 for reactive data handling. All components and composables are modular and designed for scalability, making it easy to add more features in the future.
+
