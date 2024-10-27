@@ -1,9 +1,10 @@
-import { defineEventHandler } from "h3";
-import { Yacht } from "../../types/YachtTypes";
+import { defineEventHandler, getQuery } from "h3";
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const { page = 1 } = getQuery(event);
+
   const response = await fetch(
-    "https://royaloceanyachts.com/api/yachts?buy=true&page=1",
+    `https://royaloceanyachts.com/api/yachts?buy=true&page=${page}`,
     {
       headers: {
         "Access-Control-Allow-Origin": "*",

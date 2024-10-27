@@ -1,98 +1,84 @@
-# Project Structure
+# Project Structure and Setup
+
+This project is a Nuxt 3 application showcasing yachts for sale, with responsive design elements for desktop and mobile views. We implemented Tailwind CSS for styling and integrated a dynamic API to fetch yacht data. Below is a comprehensive breakdown of the project's structure, features, and setup instructions.
+
+---
+
+## Project Structure
+
+* **assets/**
+  * `tailwind.css`: Contains Tailwind base styles (`@tailwind base`, `@tailwind components`, `@tailwind utilities`) to configure the main styling for the project.
+
 * **components/**
-  * `YachtList.vue`: Displays the list of yachts. Each yacht shows its name and price in EUR. If any of these values are unavailable, a placeholder message is displayed.
+  * `Header.vue`: The main header displaying the logo and styled to remain fixed at the top of the page for better navigation.
+  * `LoadMoreButton.vue`: A button component for loading additional yacht data upon clicking. It emits an event to fetch more data when clicked.
+  * `ViewToggle.vue`: A component with toggle buttons to switch between grid views (2-column and 4-column layouts). It hides on mobile screens to enhance the mobile experience.
+  * `YachtCard.vue`: Displays individual yacht details, including image, price, length, guests, and cabins, with a responsive layout and hover effects.
+  * `YachtList.vue`: The main list of yachts, managing the layout according to the selected view (2-column or 4-column) and fetching more yachts through `LoadMoreButton.vue`.
+
 * **composables/**
-  * `useYachtsData.ts`: A custom composable for retrieving yacht data from an API. Manages data retrieval and error handling.
+  * `useYachtsData.ts`: A custom composable for fetching yacht data from an external API. Manages data retrieval, pagination, and error handling. Includes a function to fetch more data when the "Load More" button is clicked.
+
 * **pages/**
-  * `index.vue`: The main page that uses the `YachtList.vue` component to display yachts on the homepage.
+  * `index.vue`: The main page of the application, integrating `YachtList.vue` and setting up the layout.
+
+* **public/**
+  * `assets/ROY.png`: The logo used in the header.
+  * `favicon.ico`: The favicon for the project.
+  * `output.css`: Generated CSS output for Tailwind styles.
+
 * **server/api/**
-  * `fetchYachtsData.ts`: Defines a backend API route using h3 to fetch yachts from an external API.
+  * `fetchYachtsData.ts`: A server-side API route utilizing the `h3` module to fetch yacht data from an external API with pagination.
+
 * **types/**
-  * `YachtTypes.ts`: Defines the structure of the `Yacht` object, including attributes such as `id`, `name`, `buyPrice`, `length`, `cabins`, and `guests`.
+  * `YachtTypes.ts`: Defines the TypeScript types for yacht data, ensuring that properties like `id`, `name`, `buyPrice`, `length`, `cabins`, and `guests` are correctly structured.
 
-# API
-* **API Route**: ```/api/fetchYachtsData```
-  * This route fetches yacht data from ```https://royaloceanyachts.com/api/yachts?buy=true&page=1```. The data is retrieved and returned in the response for the frontend to process.
+* **root files**
+  * `app.css`: Main CSS file for additional global styles.
+  * `app.vue`: The root component that sets up the main layout, including the header and primary content area.
+  * `nuxt.config.ts`: Nuxt configuration file, including modules and global settings.
+  * `tailwind.config.js`: Tailwind CSS configuration file to extend default settings.
+  * `tsconfig.json`: TypeScript configuration file to define paths, modules, and type-checking settings.
 
-# Important Notes
-* The project uses Nuxt 3.13.2 and Vue 3.5.12.
-* The ```useFetch``` function is used to retrieve data from the backend API.
-* TypeScript is fully integrated with custom types defined in `types/YachtTypes.ts`.
+---
 
-# Dependencies
-* Nuxt 3.13.2
-* Vue.js 3.5.12
-* TypeScript
-* h3 (for API routes)
+## API Integration
 
-# Setup
+* **API Route**: `/api/fetchYachtsData`
+  * Fetches yacht data from `https://royaloceanyachts.com/api/yachts?buy=true&page={page}`, where `{page}` is dynamically set for pagination. This allows the application to load data progressively as the user clicks "Load More."
 
-Make sure to install dependencies:
+---
+
+## Important Notes
+
+* **Responsive Design**: The application is designed to adapt between desktop and mobile screens, hiding certain components (e.g., `ViewToggle.vue`) on smaller screens and adjusting layout automatically.
+* **Dynamic Data Loading**: The project uses Nuxt's `$fetch` function to retrieve paginated data from the API endpoint, enhancing performance by loading only the required data as the user interacts.
+* **TypeScript Integration**: TypeScript is used throughout the project for type safety, particularly with the custom types defined in `types/YachtTypes.ts`.
+
+---
+
+## Dependencies
+
+* **Nuxt**: 3.13.2
+* **Vue.js**: 3.5.12
+* **TypeScript**
+* **h3**: Used for server-side API routes
+* **Tailwind CSS**: For responsive and utility-based styling
+
+---
+
+## Setup
+
+### Cloning and Installation
+
+Clone the repository and install dependencies:
 
 ```bash
-# npm
+# Clone the repository
+git clone https://github.com/Xons001/north-web-developer-test.git
+
+# Navigate to the project directory
+cd north-web-developer-test.git
+
+# Install dependencies
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

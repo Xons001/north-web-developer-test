@@ -1,18 +1,13 @@
 <template>
   <div>
-    <h1>Yachts for Sale</h1>
-    <div v-if="error">{{ error }}</div>
-    <ul v-else>
-      <li v-for="yacht in yachts" :key="yacht.id">
-        {{ yacht?.name || 'Name not available' }} - 
-        {{ yacht?.buyPrice?.EUR || 'Price not available' }}
-      </li>
-    </ul>
+    <Header />
+    <main class="pt-20 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto">
+      <h1 class="text-2xl mb-6 text-[#323349]">YACHTS FOR SALE - 340</h1>
+      <NuxtPage />
+    </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useYachtsData } from './composables/useYachtsData';
-
-const { yachts, error } = useYachtsData();
+import Header from './components/Header.vue';
 </script>
